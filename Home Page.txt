@@ -93,5 +93,136 @@ nav a {
   padding: 10px;
   margin: 10px 0;
 }
+-------------------------------------------------------------------------------
+<div class="header">
+  <h1>Hello, User!</h1>
+  <button class="login-btn">Login</button>
+</div>
 
+<div class="hero-section">
+  <h2>Welcome to Our E-Cart!</h2>
+  <p>Find the best products at unbeatable prices.</p>
+</div>
+
+<div class="products">
+  <div class="product-card" *ngFor="let product of products">
+    <img [src]="product.image" alt="{{ product.name }}" />
+    <h3>{{ product.name }}</h3>
+    <p>Price: ₹{{ product.price }}</p>
+    <button>Add to Cart</button>
+  </div>
+</div>
+--------------------------------------------------------------------------
+/* Header Section */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #343a40;
+  color: white;
+  padding: 10px 20px;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.login-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.login-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  background-color: #f8f9fa;
+  padding: 40px 20px;
+}
+
+.hero-section h2 {
+  margin-bottom: 10px;
+  font-size: 2rem;
+  color: #343a40;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  color: #6c757d;
+}
+
+/* Product Grid */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.product-card img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.product-card h3 {
+  margin: 10px 0;
+}
+
+.product-card p {
+  margin: 5px 0 15px;
+  color: #555;
+}
+
+.product-card button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.product-card button:hover {
+  background-color: #218838;
+}
+----------+---------------------------------
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-landing',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './landing.component.html',
+  styleUrls: ['./landing.component.css']
+})
+export class LandingComponent {
+  products = [
+    { id: 1, name: 'Smartphone', price: 12999, image: 'assets/smartphone.jpg' },
+    { id: 2, name: 'Headphones', price: 2999, image: 'assets/headphones.jpg' },
+    { id: 3, name: 'Laptop', price: 55999, image: 'assets/laptop.jpg' },
+    { id: 4, name: 'Smart Watch', price: 4999, image: 'assets/smartwatch.jpg' }
+  ];
+}
 
