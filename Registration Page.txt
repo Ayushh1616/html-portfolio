@@ -1,0 +1,82 @@
+REGISTRATION PAGE
+--------------------------------------------------------------------------------------------------------------------------------------
+-->registration.component.html
+
+<div class="registration-container">
+  <h2>Registration</h2>
+  <form (ngSubmit)="registerUser()">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" [(ngModel)]="user.name" name="name" maxlength="50" required />
+    </div>
+
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" [(ngModel)]="user.email" name="email" required />
+    </div>
+
+    <div>
+      <label for="address">Address:</label>
+      <textarea id="address" [(ngModel)]="user.address" name="address" maxlength="100" required></textarea>
+    </div>
+
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" [(ngModel)]="user.password" name="password" minlength="10" maxlength="30" required />
+    </div>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+</div>
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-->registration.component.ts
+
+
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.css'],
+})
+export class RegistrationComponent {
+  user = {
+    name: '',
+    email: '',
+    address: '',
+    password: '',
+  };
+  successMessage = '';
+
+  registerUser() {
+    const customerId = Math.floor(1000000 + Math.random() * 9000000); // Generate random 7-digit ID
+    this.successMessage = `Registration successful! Customer ID: ${customerId}, Name: ${this.user.name}, Email: ${this.user.email}`;
+    // Clear form
+    this.user = { name: '', email: '', address: '', password: '' };
+  }
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--->registration.component.css
+
+.registration-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.success-message {
+  color: green;
+  margin-top: 10px;
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+

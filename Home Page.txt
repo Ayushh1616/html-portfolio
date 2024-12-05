@@ -1,0 +1,97 @@
+HOME PAGE 
+
+--> home.component.html
+
+
+<div class="home-container">
+  <header>
+    <div class="welcome">
+      Welcome, {{ username }}
+      <img src="assets/profile-icon.png" alt="Profile Icon" class="profile-icon" />
+    </div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/my-cart">My Cart</a>
+      <a href="/my-orders">My Orders</a>
+      <a href="/profile">Profile</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Products</h2>
+    <div class="search">
+      <label for="category">Search by Category:</label>
+      <select id="category" [(ngModel)]="selectedCategory">
+        <option value="" disabled selected>Select Category</option>
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+    </div>
+
+    <div class="products">
+      <div *ngFor="let product of products" class="product-card">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <p>Price: {{ product.price }}</p>
+        <button (click)="addToCart(product)">Add to Cart</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+---->home.component.ts
+
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
+})
+export class HomeComponent {
+  username = 'John Doe'; // Placeholder username
+  categories = ['Fashion', 'Electronics', 'Stationery', 'Home Decor'];
+  selectedCategory = '';
+  products = [
+    { name: 'Laptop', description: 'High performance laptop', price: '$999' },
+    { name: 'Chair', description: 'Ergonomic office chair', price: '$199' },
+  ];
+
+  addToCart(product: any) {
+    alert(`Added ${product.name} to cart`);
+  }
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+-->home.component.css
+
+.home-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.product-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+
